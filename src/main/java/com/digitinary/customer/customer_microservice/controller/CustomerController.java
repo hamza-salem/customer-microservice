@@ -26,14 +26,6 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long id){
-        return ResponseEntity.ok(customerService.getCustomer(id));
-    }
-
-
-
-
     @DeleteMapping("/{id}")
     public void deleteCustomer(@PathVariable("id") Long id) throws Exception {
         customerService.deleteCustomer(id);
