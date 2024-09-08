@@ -17,19 +17,17 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
 
-    public void createCustomer(CustomerModel customerModel) throws Exception {
+    public Customer createCustomer(CustomerModel customerModel) throws Exception {
         customerModel.validateRequest();
         Customer customer = CustomerModel.getInstance(customerModel);
-        customerRepository.save(customer);
+        return customerRepository.save(customer);
     }
 
 
-    public void deleteCustomer(Long id) throws Exception {
+    public Customer deleteCustomer(Long id) throws Exception {
         Customer customer = customerRepository.findById(id).orElseThrow(()->new Exception("Customer not found"));
         customerRepository.delete(customer);
+        return customer;
     }
 
-    public Customer getCustomer(Long id) {
-        return customerRepository.findById(id).get();
-    }
 }
